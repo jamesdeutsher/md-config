@@ -24,10 +24,8 @@ server {
 
 	}
 
-	# deny access to .htaccess files, if Apache's document root
-	# concurs with nginx's one
-	
-	location ~ /\.ht {
-		deny all;
-	}
+	# Block access to temp and dot files
+	location ~ /\. { access_log off; log_not_found off; deny all; }
+	location ~ ~$ { access_log off; log_not_found off; deny all; }
+
 }
